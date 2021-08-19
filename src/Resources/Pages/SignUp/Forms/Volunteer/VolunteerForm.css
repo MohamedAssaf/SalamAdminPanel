@@ -1,0 +1,14 @@
+.modal-body-volunteer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #832685;
+  font-family: "El Messiri", sans-serif;
+}
+
+
+@media only screen and (max-device-width: 768px) {
+  .volunteer-form {
+    width: 90%;
+  }
+}

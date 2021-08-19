@@ -1,0 +1,79 @@
+.sign-up-button {
+    font-weight: bolder;
+    top: 1.2%;
+    padding: 11.15%;
+    border-radius: 3%;
+    color: white;
+    background-color: #1ac8dc;
+    height: 80%;
+}
+
+.sign-up-bar-root-div{
+    display: flex;
+    flex-direction: column;
+}
+
+/* .sign-up-button {
+    font-weight: bolder;
+    top: 1.2%;
+    padding: 11.15%;
+    border-radius: 3%;
+    background-color: white;
+    color: #1ac8dc;
+    height: 80%;
+    box-shadow: 6px 4px 2px grey;
+    border: solid;
+    border-color: #1ac8dc;
+} */
+
+
+.sign-up-button:hover{
+    cursor: pointer;
+    /* background: #1ac8dc; */
+    opacity: 0.75;
+    /* background-color: #1ac8dc; */
+    color: white;
+    /* box-shadow: 4px 4px 4px grey; */
+
+}
+
+.sign-up-bar{
+    width: 50%;
+    flex-wrap: nowrap !important;
+    align-self: center !important;
+}
+
+.sign-up-div{
+    text-align: center;
+    /* margin-left: 42.5% !important; */
+    /* margin-right: 42.5% !important; */
+}
+
+.sign-up-title{
+    text-align: center;
+    font-weight: bolder;
+    font-size: x-large;
+    margin-bottom: 1%;
+    color: #1ac8dc;
+}
+
+.sign_up_link{
+    color: white;
+}
+.sign_up_link:hover{
+    color: white;
+}
+
+@media only screen   
+and (max-device-width : 768px) {
+  .sign-up-bar {
+    flex-direction: column;
+    /* margin-left:21.5%; */
+  }
+  .sign-up-button{
+    min-height: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+}

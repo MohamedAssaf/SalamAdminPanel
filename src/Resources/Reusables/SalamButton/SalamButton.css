@@ -1,0 +1,14 @@
+.sign-up-button-div{
+    text-align: center;
+    width: 10%;
+    height: 7%;
+}
+
+.sign-up-button {
+    font-weight: bolder;
+    top: 1.2%;
+    padding: 11.15%;
+    border-radius: 3%;
+    color: white;
+    background-color: #1ac8dc;
+}

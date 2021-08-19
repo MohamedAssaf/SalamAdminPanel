@@ -1,0 +1,41 @@
+.Body {
+  color: #832685;
+  padding-top: 10vh;
+  padding-bottom: 10vh;
+}
+
+.sign-up-form {
+  text-align: center;
+  /* height: 90vh; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.sign-up-role {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+}
+
+.btn-primary{
+  background-color: #1ac8dc !important;
+  border-color: #1ac8dc !important;
+}
+
+.btn-primary:hover {
+  opacity: 0.6;
+}
+
+.error{
+  border-color: red !important;
+}
+
+.err-message{
+  color:red !important;
+}
+
+.form-sign-up-labels{
+  
+}
+

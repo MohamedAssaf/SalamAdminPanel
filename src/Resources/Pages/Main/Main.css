@@ -1,0 +1,24 @@
+.Body {
+  color: #832685;
+  padding-top: 10vh;
+  padding-bottom: 10vh;
+}
+.intro {
+  text-align: center;
+  justify-content: center;
+  color: #832685;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 8vh;
+}
+.App-header {
+  font-size: calc(10px + 1vmin);
+}
+.sub-text {
+  font-size: calc(5px + 1vmin);
+  color: gray;
+}
+p {
+  color: #832685;
+}

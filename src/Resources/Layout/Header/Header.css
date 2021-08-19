@@ -1,0 +1,19 @@
+.header {
+  margin-bottom: 1rem;
+  /* padding: 1rem; */
+  /* background-color: rgb(235, 195, 64); */
+  top: 0;
+  position: fixed;
+  /* left: 0; */
+  width: 100vw;
+  color: #832685;
+  font-size: calc(7px + 1vmin);
+  background-color: white;
+  z-index: 1000;
+}
+
+.header-logo {
+  margin-right: 5%;
+  /* margin-left:5%; */
+}
+

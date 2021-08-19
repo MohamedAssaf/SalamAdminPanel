@@ -1,0 +1,31 @@
+.footer{
+    margin-top: 1rem;
+    padding: 1rem;
+    /* background-color: rgb(235, 195, 64); */
+    position: fixed;
+    bottom: 0;
+    /* left: 0; */
+    /* right: -7%; */
+    width: 100vw;
+    color: #832685;
+    font-size: calc(7px + 1vmin);
+    /* margin-right: 3%; */
+    text-align: center;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+  }
+
+  @media only screen   
+  and (max-device-width : 768px) {
+    .footer {
+      right: 0% !important;
+    }
+  }
+
+  @media only screen   
+  and (min-device-width : 768px) {
+    .footer {
+      right: -2% !important;
+    }
+  }
