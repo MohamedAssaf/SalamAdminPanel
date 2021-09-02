@@ -32,6 +32,7 @@ export const englishConstants = {
   ChooseFile: "Choose a file",
   ThankYou: "Thank you so much!",
   ThankYouBody: "ًWe're honoured you want to join us! Your application will be reviewed and someone from our team will contact you, SALAM.",
+  LogInButton: "Login"
 };
 
 export const arabicConstants = {
@@ -68,5 +69,7 @@ export const arabicConstants = {
   ChooseFile: "اختار صورة",
   ThankYou: "متشكرين جدا ليكم! ",
   ThankYouBody: "متشرفين أنكم حابين تنضموا لينا, في حد من فريقنا هايرجع طلبكم و يتواصل معاكم. سلام",
+  LogInButton: "تسجيل الدخول"
+
 };
 

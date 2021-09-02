@@ -1,10 +1,11 @@
 import "./App.css";
-import { Main, About, SignUp } from "./Resources/Pages";
+import { Main, Login } from "./Resources/Pages";
 import { Footer, Header } from "./Resources/Layout";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { RecoilRoot } from "recoil";
 
 function App() {
+
   return (
     <RecoilRoot>
       <div className="root-view">
@@ -12,6 +13,9 @@ function App() {
         <Router className="body">
           <Switch>
             <Route path="/">
+              <Login />
+            </Route>
+            <Route path="/main">
               <Main />
             </Route>
           </Switch>
