@@ -178,7 +178,6 @@ export const logIn = async (lang, { email, password }) => {
           var errorCode = error.code;
           var errorMessage = error.message;
           swal(errorMessage, "", "error");
-          throw "error mannn";
         });
     })
     .catch((error) => {
@@ -189,6 +188,14 @@ export const logIn = async (lang, { email, password }) => {
     });
 };
 
-// export const getLoggedInUser = async () => {
-//   return user;
-// };
+export const logOut = async() => {
+  return firebase.auth().signOut().then(() => {
+    return 1;
+  }).catch((error) => {
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    swal(errorMessage, "", "error");
+    return 0;
+  });
+}
+

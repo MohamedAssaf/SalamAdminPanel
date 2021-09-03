@@ -4,17 +4,27 @@ import { Navbar, Container, Nav } from "react-bootstrap";
 import logo from "../../../Assets/SLogo1.png";
 import { getLanguageConstant } from "../../../Utilities/Helpers";
 import { useRecoilState } from "recoil";
-import { websiteLanguageState, userState } from "../../../RecoilResources/Atoms";
-
+import {
+  websiteLanguageState,
+  userState,
+} from "../../../RecoilResources/Atoms";
+import * as _ from 'lodash';
 import "./Header.css";
+import { logOut } from "../../../Utilities/Firebase";
 const Header = function () {
   const [lang] = useRecoilState(websiteLanguageState);
-  const [currentUser] = useRecoilState(userState);
+  const [currentUser, setCurrentUser] = useRecoilState(userState);
+  console.log(currentUser)
+  let LogOutUser = async function () {
+    let result = await logOut();
+    if (result == 1) {
+      setCurrentUser(null);
+    }
+  };
 
   return (
     <div className="header">
       <Navbar bg="light" expand="lg">
-
         <Container>
           <Navbar.Brand href="home">
             <img
@@ -23,7 +33,8 @@ const Header = function () {
               width="30"
               height="30"
               className="header-logo"
-            />{"      "}
+            />
+            {"      "}
             {getLanguageConstant(lang, "Salam")}
           </Navbar.Brand>{" "}
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -33,7 +44,14 @@ const Header = function () {
               <LanguageButton />
             </Nav>
           </Navbar.Collapse>
-          <h1>Hey </h1>
+          {/* <i class="fa fa-user" aria-hidden="true" style={{fontSize: "1.5em"}}></i> */}
+          {!_.isEmpty(currentUser) && (
+            <div className="log-out-div">
+              <p className="log-out" onClick={LogOutUser}>
+                <strong>Log Out</strong>
+              </p>
+            </div>
+          )}
         </Container>
       </Navbar>
     </div>
