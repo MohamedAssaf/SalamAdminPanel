@@ -6,6 +6,8 @@ import "firebase/firestore";
 import "firebase/storage";
 import swal from "sweetalert";
 import { getLanguageError } from "../Utilities/Helpers";
+import { useSetRecoilState } from "recoil";
+import { userState } from '../RecoilResources/Atoms';
 
 // let firebaseConfig = {
 //   apiKey: "AIzaSyAlmJoTiSW7W_s6BDy5Z-MakNTdovzAp9s",
@@ -32,7 +34,21 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 const storage = firebase.storage();
-// const auth = firebase.auth();
+firebase.auth().onAuthStateChanged(function (u) {
+  const setUserState = useSetRecoilState(userState);
+  if (u) {
+    // User is signed in.
+    // currentUser = u;
+    console.log("H@ENAAAAA");
+    setUserState(u);
+  } else {
+    // No user is signed in.
+    // currentUser = null;
+    console.log("H@ENAAAAANOOOOOOOO");
+
+    setUserState(null);
+  }
+});
 
 export const signUp = async (lang, form, files = []) => {
   firebase
@@ -138,8 +154,8 @@ export const getCode = async (code) => {
 };
 
 export const logIn = async (lang, { email, password }) => {
-  console.log("Hena", email, password)
-  firebase
+  console.log("Hena", email, password);
+  return firebase
     .auth()
     .setPersistence(firebase.auth.Auth.Persistence.SESSION)
     .then(() => {
@@ -148,19 +164,21 @@ export const logIn = async (lang, { email, password }) => {
       // if a user forgets to sign out.
       // ...
       // New sign-in will be persisted with session persistence.
-      firebase
+      return firebase
         .auth()
         .signInWithEmailAndPassword(email, password)
         .then((userCredential) => {
           // Signed in
-          var user = userCredential.user;
-          console.log("Logged In!")
+          // var user = userCredential.user;
+          console.log("Logged In!");
+          return userCredential.user;
           // ...
         })
         .catch((error) => {
           var errorCode = error.code;
           var errorMessage = error.message;
           swal(errorMessage, "", "error");
+          throw "error mannn";
         });
     })
     .catch((error) => {
@@ -171,19 +189,6 @@ export const logIn = async (lang, { email, password }) => {
     });
 };
 
-export const checkLogInState = async () => {
-  let result = await firebase.auth().onAuthStateChanged(function(user) {
-    if (user) {
-      // User is signed in.
-      console.log(user)
-    } else {
-      // No user is signed in.
-      console.log("heh?")
-    }
-  });
-  console.log(result);
-}
-
 // export const getLoggedInUser = async () => {
-//   return await auth.currentUser;
-// }
+//   return user;
+// };

@@ -3,7 +3,10 @@ import backgroundDot from "../../../Assets/salam_background_edited1.png";
 import logo from "../../../Assets/SLogo1.png";
 import "./Login.css";
 import { useRecoilState } from "recoil";
-import { websiteLanguageState } from "../../../RecoilResources/Atoms";
+import {
+  websiteLanguageState,
+  userState,
+} from "../../../RecoilResources/Atoms";
 import {
   getLanguageConstant,
   getLanguageError,
@@ -17,6 +20,7 @@ import { logIn } from "../../../Utilities/Firebase";
 
 const Login = function () {
   const [lang] = useRecoilState(websiteLanguageState);
+  const [currentUser, setCurrentUser] = useRecoilState(userState);
   const [show, setShow] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -51,8 +55,8 @@ const Login = function () {
       password,
     };
 
-    await logIn(lang, logInObj);
-    // setTimeout(() => setShow(false), 3000)
+    let user = await logIn(lang, logInObj);
+    setCurrentUser(user.uid);
     setShow(false);
   };
   return (

@@ -4,11 +4,12 @@ import { Navbar, Container, Nav } from "react-bootstrap";
 import logo from "../../../Assets/SLogo1.png";
 import { getLanguageConstant } from "../../../Utilities/Helpers";
 import { useRecoilState } from "recoil";
-import { websiteLanguageState } from "../../../RecoilResources/Atoms";
+import { websiteLanguageState, userState } from "../../../RecoilResources/Atoms";
 
 import "./Header.css";
 const Header = function () {
   const [lang] = useRecoilState(websiteLanguageState);
+  const [currentUser] = useRecoilState(userState);
 
   return (
     <div className="header">
@@ -31,9 +32,8 @@ const Header = function () {
               {/* <Nav.Link href="home">{getLanguageConstant(lang, "Home")}</Nav.Link> */}
               <LanguageButton />
             </Nav>
-            <Nav>
-            </Nav>
           </Navbar.Collapse>
+          <h1>Hey </h1>
         </Container>
       </Navbar>
     </div>
