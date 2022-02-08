@@ -8,27 +8,16 @@ import swal from "sweetalert";
 import { getLanguageError } from "../Utilities/Helpers";
 import { useSetRecoilState } from "recoil";
 import { userState } from '../RecoilResources/Atoms';
-
-// let firebaseConfig = {
-//   apiKey: "AIzaSyAlmJoTiSW7W_s6BDy5Z-MakNTdovzAp9s",
-//   authDomain: "salam-c648a.firebaseapp.com",
-//   databaseURL:
-//     "https://salam-c648a-default-rtdb.europe-west1.firebasedatabase.app",
-//   projectId: "salam-c648a",
-//   storageBucket: "salam-c648a.appspot.com",
-//   messagingSenderId: "900048046978",
-//   appId: "1:900048046978:web:91e0de493e1ee0ffce1d9b",
-//   measurementId: "G-N75S8H51C5",
-// };
+import configData from "../Config";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCkyxPPiKIZasyePwUlrKMZr4q4eyUkwRY",
-  authDomain: "salam-staging.firebaseapp.com",
-  projectId: "salam-staging",
-  storageBucket: "salam-staging.appspot.com",
-  messagingSenderId: "836740903007",
-  appId: "1:836740903007:web:ef4ee12156439bca7aabea",
-  measurementId: "G-B3XPTN5RW4",
+  apiKey: configData.API_KEY,
+  authDomain: configData.AUTH_DOMAIN,
+  projectId: configData.PROJECT_ID,
+  storageBucket: configData.STORAGE_BUCKET,
+  messagingSenderId: configData.MESSAGING_SENDER_ID,
+  appId: configData.APP_ID,
+  measurementId: configData.MEASUREMENT_ID,
 };
 
 firebase.initializeApp(firebaseConfig);
