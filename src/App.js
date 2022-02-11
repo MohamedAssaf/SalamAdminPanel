@@ -45,7 +45,7 @@ function App() {
     <div className="root-view">
       <Header className="header"></Header>
       <Router className="body">
-        {false ? renderLogInRoutes() : renderLoggedInRoutes()}
+        {_.isEmpty(currentUser) ? renderLogInRoutes() : renderLoggedInRoutes()}
       </Router>
       <Footer className="footer"></Footer>
     </div>
