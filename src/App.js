@@ -1,5 +1,5 @@
 import "./App.css";
-import { Main, Login } from "./Resources/Pages";
+import { Main, Login, Users, Posts, Applications, ReferralCodes } from "./Resources/Pages";
 import { Footer, Header } from "./Resources/Layout";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { useRecoilState } from "recoil";
@@ -22,6 +22,18 @@ function App() {
   let renderLoggedInRoutes = function () {
     return (
       <Switch>
+        <Route path="/users">
+          <Users />
+        </Route>
+        <Route path="/posts">
+          <Posts />
+        </Route>
+        <Route path="/applications">
+          <Applications />
+        </Route>
+        <Route path="/referralCodes">
+          <ReferralCodes />
+        </Route>
         <Route path="/">
           <Main />
         </Route>
@@ -33,7 +45,7 @@ function App() {
     <div className="root-view">
       <Header className="header"></Header>
       <Router className="body">
-        {_.isEmpty(currentUser) ? renderLogInRoutes() : renderLoggedInRoutes()}
+        {false ? renderLogInRoutes() : renderLoggedInRoutes()}
       </Router>
       <Footer className="footer"></Footer>
     </div>

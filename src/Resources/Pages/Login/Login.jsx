@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import backgroundDot from "../../../Assets/salam_background_edited1.png";
 import logo from "../../../Assets/SLogo1.png";
 import "./Login.css";
 import { useRecoilState } from "recoil";
@@ -63,7 +62,6 @@ const Login = function () {
     <div
       className="Body "
       style={{
-        backgroundImage: `url(${backgroundDot})`,
         backgroundSize: "50px",
       }}
     >

@@ -5,6 +5,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-image: url(./Assets/salam_background_edited1.png);
+  background-size: 4%;
 }
 
 @font-face {
@@ -15,4 +17,10 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+@media screen and (max-device-width: 500px) {
+  body {
+
+  }
 }
