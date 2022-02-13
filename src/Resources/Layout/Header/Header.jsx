@@ -40,7 +40,15 @@ const Header = function () {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              {/* <Nav.Link href="home">{getLanguageConstant(lang, "Home")}</Nav.Link> */}
+              {!_.isEmpty(currentUser) && 
+              <Nav.Link href="users">{getLanguageConstant(lang, "Users")}</Nav.Link> 
+              &&
+              <Nav.Link href="posts">{getLanguageConstant(lang, "Posts")}</Nav.Link>
+              &&
+              <Nav.Link href="Applications">{getLanguageConstant(lang, "Applications")}</Nav.Link>
+              &&
+              <Nav.Link href="ReferralCodes">{getLanguageConstant(lang, "ReferralCodes")}</Nav.Link>
+              }
               <LanguageButton />
             </Nav>
           </Navbar.Collapse>
