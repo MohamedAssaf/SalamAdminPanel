@@ -17,3 +17,11 @@
   /* margin-left:5%; */
 }
 
+.log-out{
+  display: table-cell;
+  cursor: pointer;
+}
+
+.log-out-div{
+  display: table;
+}

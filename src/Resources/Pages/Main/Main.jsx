@@ -5,11 +5,6 @@ import "./Main.css";
 import { useRecoilState } from "recoil";
 import { websiteLanguageState } from "../../../RecoilResources/Atoms";
 import { getLanguagePhrase, getLanguageConstant } from "../../../Utilities/Helpers";
-import { AboutUs, DualAboutUs } from "../../Reusables";
-import { SignUpBar } from "../../Components";
-import visionLogo from '../../../Assets/roundWorldResize.png';
-import missionLogo from '../../../Assets/mission.jpeg';
-import swal from "sweetalert";
 
 const Main = function () {
   const [lang] = useRecoilState(websiteLanguageState);

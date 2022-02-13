@@ -1,0 +1,15 @@
+.log-in-form{
+    min-height: 35vh;
+    width: 100%;
+    border-radius: 10%;
+    max-width: 45vh;
+    margin-top: 12%;
+}
+
+.log-in-main{
+    margin-top: 10%;
+}
+
+.log-in-submit{
+    display: flex;
+}

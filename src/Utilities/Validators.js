@@ -136,3 +136,15 @@ export let validateGender = (gender) => {
     error: "emptyGender",
   };
 };
+
+export let validateLogInPassword = (password) => {
+  if (password && password.length > 0) {
+    return {
+      status: 1,
+    };
+  }
+  return {
+    status: 0,
+    error: "emptyPassword",
+  };
+};

@@ -6,32 +6,38 @@ import "firebase/firestore";
 import "firebase/storage";
 import swal from "sweetalert";
 import { getLanguageError } from "../Utilities/Helpers";
-
-// let firebaseConfig = {
-//   apiKey: "AIzaSyAlmJoTiSW7W_s6BDy5Z-MakNTdovzAp9s",
-//   authDomain: "salam-c648a.firebaseapp.com",
-//   databaseURL:
-//     "https://salam-c648a-default-rtdb.europe-west1.firebasedatabase.app",
-//   projectId: "salam-c648a",
-//   storageBucket: "salam-c648a.appspot.com",
-//   messagingSenderId: "900048046978",
-//   appId: "1:900048046978:web:91e0de493e1ee0ffce1d9b",
-//   measurementId: "G-N75S8H51C5",
-// };
+import { useSetRecoilState } from "recoil";
+import { userState } from '../RecoilResources/Atoms';
+import configData from "../Config";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCkyxPPiKIZasyePwUlrKMZr4q4eyUkwRY",
-  authDomain: "salam-staging.firebaseapp.com",
-  projectId: "salam-staging",
-  storageBucket: "salam-staging.appspot.com",
-  messagingSenderId: "836740903007",
-  appId: "1:836740903007:web:ef4ee12156439bca7aabea",
-  measurementId: "G-B3XPTN5RW4"
+  apiKey: configData.API_KEY,
+  authDomain: configData.AUTH_DOMAIN,
+  projectId: configData.PROJECT_ID,
+  storageBucket: configData.STORAGE_BUCKET,
+  messagingSenderId: configData.MESSAGING_SENDER_ID,
+  appId: configData.APP_ID,
+  measurementId: configData.MEASUREMENT_ID,
 };
 
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 const storage = firebase.storage();
+firebase.auth().onAuthStateChanged(function (u) {
+  const setUserState = useSetRecoilState(userState);
+  if (u) {
+    // User is signed in.
+    // currentUser = u;
+    console.log("H@ENAAAAA");
+    setUserState(u);
+  } else {
+    // No user is signed in.
+    // currentUser = null;
+    console.log("H@ENAAAAANOOOOOOOO");
+
+    setUserState(null);
+  }
+});
 
 export const signUp = async (lang, form, files = []) => {
   firebase
@@ -135,3 +141,50 @@ export const getCode = async (code) => {
     return false;
   }
 };
+
+export const logIn = async (lang, { email, password }) => {
+  console.log("Hena", email, password);
+  return firebase
+    .auth()
+    .setPersistence(firebase.auth.Auth.Persistence.SESSION)
+    .then(() => {
+      // Existing and future Auth states are now persisted in the current
+      // session only. Closing the window would clear any existing state even
+      // if a user forgets to sign out.
+      // ...
+      // New sign-in will be persisted with session persistence.
+      return firebase
+        .auth()
+        .signInWithEmailAndPassword(email, password)
+        .then((userCredential) => {
+          // Signed in
+          // var user = userCredential.user;
+          console.log("Logged In!");
+          return userCredential.user;
+          // ...
+        })
+        .catch((error) => {
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          swal(errorMessage, "", "error");
+        });
+    })
+    .catch((error) => {
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      swal(errorMessage, "", "error");
+    });
+};
+
+export const logOut = async() => {
+  return firebase.auth().signOut().then(() => {
+    return 1;
+  }).catch((error) => {
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    swal(errorMessage, "", "error");
+    return 0;
+  });
+}
+
