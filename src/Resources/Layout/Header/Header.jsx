@@ -46,15 +46,15 @@ const Header = function () {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-               {!_.isEmpty(currentUser) && 
-               <Nav.Link className={currentPath == 'users' ? 'active-navlink text-white' : ''} href="users">{getLanguageConstant(lang, "Users")}</Nav.Link> 
-               &&
-               <Nav.Link className={currentPath == 'posts' ? 'active-navlink text-white' : ''} href="posts">{getLanguageConstant(lang, "Posts")}</Nav.Link>
-               &&
-               <Nav.Link className={currentPath == 'applications' ? 'active-navlink text-white' : ''} href="applications">{getLanguageConstant(lang, "Applications")}</Nav.Link>
-               &&
-               <Nav.Link className={currentPath == 'referralcodes' ? 'active-navlink text-white' : ''} href="referralcodes">{getLanguageConstant(lang, "ReferralCodes")}</Nav.Link>
-               }
+                {!_.isEmpty(currentUser) &&
+                  <Nav.Link style={{color: currentPath == 'users' ? '#832685' : ''}} href="users">{getLanguageConstant(lang, "Users")}</Nav.Link> 
+                  &&
+                  <Nav.Link style={{color: currentPath == 'posts' ? '#832685' : ''}} href="posts">{getLanguageConstant(lang, "Posts")}</Nav.Link>
+                  &&
+                  <Nav.Link style={{color: currentPath == 'applications' ? '#832685' : ''}} href="applications">{getLanguageConstant(lang, "Applications")}</Nav.Link>
+                  &&
+                  <Nav.Link style={{color: currentPath == 'referralcodes' ? '#832685' : ''}} href="referralcodes">{getLanguageConstant(lang, "ReferralCodes")}</Nav.Link>
+                }
               <LanguageButton />
             </Nav>
           </Navbar.Collapse>
