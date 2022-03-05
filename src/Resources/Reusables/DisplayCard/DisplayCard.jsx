@@ -1,13 +1,16 @@
 import { Card } from 'react-bootstrap';
 import './DisplayCard.css';
+import testImage from '../../../Assets/Charity.jpeg'
 
-function DisplayCard({name, userType, phoneNumber, image, details}) {
+function DisplayCard({name, phone, phoneNumber, image, details}) {
     return(
-        <Card classname="card">
-            <Card.Img variant="top" src={image} />
+        <Card style={{}}>
+            <Card.Img variant="top" src={image ? image.url : testImage} />
             <Card.Body>
               <Card.Title>{name}</Card.Title>
-              <Card.Subtitle>{userType}</Card.Subtitle>
+              <Card.Subtitle>Phone Number</Card.Subtitle>
+              <br/>
+              <Card.Subtitle>{phone}</Card.Subtitle>
               <Card.Text>
                 {phoneNumber}
               </Card.Text>
