@@ -47,13 +47,15 @@ const Header = function () {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
                 {!_.isEmpty(currentUser) &&
+                <>
                   <Nav.Link style={{color: currentPath == 'users' ? '#832685' : ''}} href="users">{getLanguageConstant(lang, "Users")}</Nav.Link> 
-                  &&
+                  
                   <Nav.Link style={{color: currentPath == 'posts' ? '#832685' : ''}} href="posts">{getLanguageConstant(lang, "Posts")}</Nav.Link>
-                  &&
+                  
                   <Nav.Link style={{color: currentPath == 'applications' ? '#832685' : ''}} href="applications">{getLanguageConstant(lang, "Applications")}</Nav.Link>
-                  &&
+                  
                   <Nav.Link style={{color: currentPath == 'referralcodes' ? '#832685' : ''}} href="referralcodes">{getLanguageConstant(lang, "ReferralCodes")}</Nav.Link>
+                </>
                 }
               <LanguageButton />
             </Nav>
