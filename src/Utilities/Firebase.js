@@ -28,13 +28,10 @@ firebase.auth().onAuthStateChanged(function (u) {
   if (u) {
     // User is signed in.
     // currentUser = u;
-    console.log("H@ENAAAAA");
     setUserState(u);
   } else {
     // No user is signed in.
     // currentUser = null;
-    console.log("H@ENAAAAANOOOOOOOO");
-
     setUserState(null);
   }
 });
@@ -70,14 +67,11 @@ export const signUp = async (lang, form, files = []) => {
               .doc(user.uid)
               .set(form, { merge: true })
               .then(() => {
-                console.log("Document successfully written!");
                 if (form.type == 0) {
                   const codeRef = db.collection("codes").doc(form.codeId);
                   codeRef
                     .update({ used: true })
                     .then((res) => {
-                      console.log(res);
-                      console.log("Updated code successfully");
                       window.location = "/home?signedUp=true";
                     })
                     .catch((e) => {
@@ -91,7 +85,6 @@ export const signUp = async (lang, form, files = []) => {
                   lang == "ar"
                     ? getLanguageError(lang, error.code)
                     : error.message;
-                console.log(error);
                 swal(errorMessage, "", "error");
                 console.error("Error writing document: ", error);
               });
@@ -108,7 +101,6 @@ export const signUp = async (lang, form, files = []) => {
           .catch((error) => {
             let errorMessage =
               lang == "ar" ? getLanguageError(lang, error.code) : error.message;
-            console.log(error);
             swal(errorMessage, "", "error");
             console.error("Error writing document: ", error);
           });
@@ -143,7 +135,6 @@ export const getCode = async (code) => {
 };
 
 export const logIn = async (lang, { email, password }) => {
-  console.log("Hena", email, password);
   return firebase
     .auth()
     .setPersistence(firebase.auth.Auth.Persistence.SESSION)
@@ -159,7 +150,6 @@ export const logIn = async (lang, { email, password }) => {
         .then((userCredential) => {
           // Signed in
           // var user = userCredential.user;
-          console.log("Logged In!");
           return userCredential.user;
           // ...
         })

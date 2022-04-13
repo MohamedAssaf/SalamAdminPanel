@@ -7,7 +7,6 @@ import { userState } from "./RecoilResources/Atoms";
 import * as _ from 'lodash';
 function App() {
   const [currentUser] = useRecoilState(userState);
-  console.log(currentUser, "user");
 
   let renderLogInRoutes = function () {
     return (
