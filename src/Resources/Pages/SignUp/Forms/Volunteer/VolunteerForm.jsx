@@ -38,7 +38,6 @@ const VolunteerForm = function () {
     setShow(true);
     let errorsObj = {};
     let codeCheck = await validator.validateInvitationCode(code);
-    console.log(codeCheck);
     if (validator.validateName(name).status == 0) {
       errorsObj.name = getLanguageError(
         lang,

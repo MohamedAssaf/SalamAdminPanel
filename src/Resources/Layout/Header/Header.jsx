@@ -18,9 +18,6 @@ const Header = function () {
   const [currentUser, setCurrentUser] = useRecoilState(userState);
   const [currentPath, setCurrentPath] = useState(window.location.pathname.split('/')[1]);
 
-  console.log(currentUser);
-  console.log(currentPath);
-  
   let LogOutUser = async function () {
     let result = await logOut();
     if (result == 1) {
