@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState }  from "react";
 import { LanguageButton } from "../../Components";
 import { Navbar, Container, Nav } from "react-bootstrap";
 import logo from "../../../Assets/SLogo1.png";
@@ -11,10 +11,16 @@ import {
 import * as _ from 'lodash';
 import "./Header.css";
 import { logOut } from "../../../Utilities/Firebase";
+
 const Header = function () {
+
   const [lang] = useRecoilState(websiteLanguageState);
   const [currentUser, setCurrentUser] = useRecoilState(userState);
-  console.log(currentUser)
+  const [currentPath, setCurrentPath] = useState(window.location.pathname.split('/')[1]);
+
+  console.log(currentUser);
+  console.log(currentPath);
+  
   let LogOutUser = async function () {
     let result = await logOut();
     if (result == 1) {
@@ -40,15 +46,15 @@ const Header = function () {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              {!_.isEmpty(currentUser) && 
-              <Nav.Link href="users">{getLanguageConstant(lang, "Users")}</Nav.Link> 
-              &&
-              <Nav.Link href="posts">{getLanguageConstant(lang, "Posts")}</Nav.Link>
-              &&
-              <Nav.Link href="Applications">{getLanguageConstant(lang, "Applications")}</Nav.Link>
-              &&
-              <Nav.Link href="ReferralCodes">{getLanguageConstant(lang, "ReferralCodes")}</Nav.Link>
-              }
+               {!_.isEmpty(currentUser) && 
+               <Nav.Link className={currentPath == 'users' ? 'active-navlink text-white' : ''} href="users">{getLanguageConstant(lang, "Users")}</Nav.Link> 
+               &&
+               <Nav.Link className={currentPath == 'posts' ? 'active-navlink text-white' : ''} href="posts">{getLanguageConstant(lang, "Posts")}</Nav.Link>
+               &&
+               <Nav.Link className={currentPath == 'applications' ? 'active-navlink text-white' : ''} href="applications">{getLanguageConstant(lang, "Applications")}</Nav.Link>
+               &&
+               <Nav.Link className={currentPath == 'referralcodes' ? 'active-navlink text-white' : ''} href="referralcodes">{getLanguageConstant(lang, "ReferralCodes")}</Nav.Link>
+               }
               <LanguageButton />
             </Nav>
           </Navbar.Collapse>

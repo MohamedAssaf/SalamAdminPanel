@@ -25,3 +25,8 @@
 .log-out-div{
   display: table;
 }
+
+.active-navlink {
+  background-color: #832685;
+  border-radius: 0.75vh;
+}
