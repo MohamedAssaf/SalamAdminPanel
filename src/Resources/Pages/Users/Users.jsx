@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import "./Users.css";
 import { useRecoilState } from "recoil";
 import { websiteLanguageState } from "../../../RecoilResources/Atoms";
@@ -16,8 +16,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { validatePhoneNumber } from '../../../Utilities/Validators';
 
 //Import helpers
-import { getLanguageError } from '../../../Utilities/Helpers';
-import { getLanguagePhrase } from '../../../Utilities/Helpers';
+import { getLanguageError, getLanguagePhrase, getLanguageConstant } from '../../../Utilities/Helpers';
 
 const Users = function() {
     
@@ -26,11 +25,12 @@ const Users = function() {
     const [nextOrPrev, setNextOrPrev] = useState('');
     const [isPrevBtnDisabled, setIsPrevBtnDisabled] = useState(true);
     const [isNextBtnDisabled, setIsNextBtnDisabled] = useState(false);
-    const [itemsPerPage, setItemsPerPage] = useState(12);
+    const [itemsPerPage, setItemsPerPage] = useState(1);
     const [usersSetIndex, setUsersSetIndex] = useState(0);
     const [phoneNumber, setPhoneNumber] = useState('');
     const [invalidPhoneNumberIsShown, setInvalidPhoneNumberIsShown] = useState(false);
     const [phoneNumberErrorMessage, setPhoneNumberErrorMessage] = useState('');
+    const [isClearResultsShown, setIsClearResultsShown] = useState(false);
 
     useEffect(() => {
         console.log(`usersSetIndex is ${usersSetIndex}`);
@@ -41,7 +41,7 @@ const Users = function() {
             setIsNextBtnDisabled(chunkOfUsers[chunkOfUsers.length - 1].lastItem ? true : false);
         });
     }, [usersSetIndex]);
-    
+
     const handleInputChange = (event) => {
         setPhoneNumber(event.target.value);
     }
@@ -55,6 +55,7 @@ const Users = function() {
         setInvalidPhoneNumberIsShown(false);
         getUserWithNumber(phoneNumber).then((user) => {
             setUsers([user]);
+            setIsClearResultsShown(true);
         });    
         setIsNextBtnDisabled(true);
     }
@@ -64,16 +65,25 @@ const Users = function() {
         setUsersSetIndex(event.target.value == 'next' ? usersSetIndex + 1 : usersSetIndex - 1 );
     }
 
+    const handleClearResults = () => {
+        window.location.reload();
+    }
+
 
     return (
         <div className="main-container">
-            <label id="search">Search by phone number : </label>
+            <label id="search">{getLanguagePhrase(lang, 'searchWithPhoneNumber')}</label>
             <div className='search-bar-container'>
                 <input for="search" type="text" onChange={(event) => handleInputChange(event)}/>
-                <button type="submit" onClick={() => handleSearch()} className='button'>
+                <button type="submit" onClick={() => handleSearch()} className='button search'>
                     <FontAwesomeIcon icon={faMagnifyingGlass}/>
                 </button>
             </div>
+            {isClearResultsShown &&
+                <button className='button' style={{marginBottom: '1rem'}} onClick={() => handleClearResults()}>
+                    {getLanguageConstant(lang, 'clearResults')}
+                </button>
+            }
             {invalidPhoneNumberIsShown &&
                 <p style={{color: "red"}}>{phoneNumberErrorMessage}</p>
             }
@@ -84,9 +94,9 @@ const Users = function() {
             { users[0] &&
             <>
                 <Cards items={users}/>
-                <div>
-                  <button className='button' disabled={isPrevBtnDisabled ? 'disabled' : ''} value='prev' onClick={(event) => handlePageClick(event)}>&larr; Previous</button>
-                  <button className='button' disabled={isNextBtnDisabled ? 'disabled' : ''} value='next' onClick={(event) => handlePageClick(event)}>Next &rarr;</button>
+                <div style={{direction: 'ltr'}}>
+                  <button className='button' style={{margin: '2rem'}} disabled={isPrevBtnDisabled ? 'disabled' : ''} value='prev' onClick={(event) => handlePageClick(event)}>&larr; {getLanguageConstant(lang, 'previous')}</button>
+                  <button className='button' style={{margin: '2rem'}} disabled={isNextBtnDisabled ? 'disabled' : ''} value='next' onClick={(event) => handlePageClick(event)}>{getLanguageConstant(lang, 'next')} &rarr;</button>
                 </div>
             </>
             }
