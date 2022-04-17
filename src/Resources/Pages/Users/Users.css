@@ -11,11 +11,14 @@
 
 .button {
     color: #832685;
-    background-color: #ddd;
     border: none;
     height: 4.25vh;
     transition: 0.3s;
     border-radius: 0.25rem;
+}
+
+.search {
+    background-color: transparent;
 }
 
 .button:hover {
