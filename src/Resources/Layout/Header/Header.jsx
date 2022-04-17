@@ -1,6 +1,7 @@
 import React from "react";
 import { LanguageButton } from "../../Components";
 import { Navbar, Container, Nav } from "react-bootstrap";
+import { BrowserRouter, Link } from 'react-router-dom';
 import logo from "../../../Assets/SLogo1.png";
 import { getLanguageConstant } from "../../../Utilities/Helpers";
 import { useRecoilState } from "recoil";
@@ -39,18 +40,20 @@ const Header = function () {
           </Navbar.Brand>{" "}
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="me-auto">
-              {!_.isEmpty(currentUser) && 
-              <Nav.Link href="users">{getLanguageConstant(lang, "Users")}</Nav.Link> 
-              &&
-              <Nav.Link href="posts">{getLanguageConstant(lang, "Posts")}</Nav.Link>
-              &&
-              <Nav.Link href="Applications">{getLanguageConstant(lang, "Applications")}</Nav.Link>
-              &&
-              <Nav.Link href="ReferralCodes">{getLanguageConstant(lang, "ReferralCodes")}</Nav.Link>
-              }
-              <LanguageButton />
-            </Nav>
+            <BrowserRouter>
+              <Nav className="me-auto">
+                {!_.isEmpty(currentUser) && 
+                <Nav.Link as={Link} to="/users" >{getLanguageConstant(lang, "Users")}</Nav.Link> 
+                &&
+                <Nav.Link as={Link} to="/posts">{getLanguageConstant(lang, "Posts")}</Nav.Link>
+                &&
+                <Nav.Link as={Link} to="/Applications">{getLanguageConstant(lang, "Applications")}</Nav.Link>
+                &&
+                <Nav.Link as={Link} to="/ReferralCodes">{getLanguageConstant(lang, "ReferralCodes")}</Nav.Link>
+                }
+                <LanguageButton />
+              </Nav>
+            </BrowserRouter>
           </Navbar.Collapse>
           {/* <i class="fa fa-user" aria-hidden="true" style={{fontSize: "1.5em"}}></i> */}
           {!_.isEmpty(currentUser) && (
