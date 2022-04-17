@@ -43,14 +43,13 @@ const Header = function () {
             <BrowserRouter>
               <Nav className="me-auto">
                 {!_.isEmpty(currentUser) && 
-                <Nav.Link as={Link} to="/users" >{getLanguageConstant(lang, "Users")}</Nav.Link> 
-                &&
-                <Nav.Link as={Link} to="/posts">{getLanguageConstant(lang, "Posts")}</Nav.Link>
-                &&
-                <Nav.Link as={Link} to="/Applications">{getLanguageConstant(lang, "Applications")}</Nav.Link>
-                &&
-                <Nav.Link as={Link} to="/ReferralCodes">{getLanguageConstant(lang, "ReferralCodes")}</Nav.Link>
-                }
+                <>
+                  <Nav.Link as={Link} to="/users" >{getLanguageConstant(lang, "Users")}</Nav.Link>
+                  <Nav.Link as={Link} to="/posts">{getLanguageConstant(lang, "Posts")}</Nav.Link>
+                  <Nav.Link as={Link} to="/Applications">{getLanguageConstant(lang, "Applications")}</Nav.Link>
+                  <Nav.Link as={Link} to="/ReferralCodes">{getLanguageConstant(lang, "ReferralCodes")}</Nav.Link>
+                </>
+               }
                 <LanguageButton />
               </Nav>
             </BrowserRouter>
