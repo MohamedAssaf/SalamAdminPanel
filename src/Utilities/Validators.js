@@ -88,7 +88,6 @@ export let validateInvitationCode = async (code) => {
   if (code && code.length > 0) {
     let result = await getCode(code);
     if (result) {
-      console.log(result.used)
       if (result.used) {
         return {
           status: 0,

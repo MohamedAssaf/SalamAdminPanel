@@ -4,6 +4,7 @@
     border-radius: 10%;
     max-width: 45vh;
     margin-top: 12%;
+    margin: 0 auto;
 }
 
 .log-in-main{
@@ -11,5 +12,22 @@
 }
 
 .log-in-submit{
-    display: flex;
+}
+
+.form-sign-up-labels {
+}
+
+@media screen and (max-width: 765px) {    
+    .log-in-submit{
+        text-align: center;
+    }
+
+    .log-in-form {
+    }
+
+    .form-sign-up-labels {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
 }

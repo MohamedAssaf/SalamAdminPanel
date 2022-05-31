@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState }  from "react";
 import { LanguageButton } from "../../Components";
 import { Navbar, Container, Nav } from "react-bootstrap";
 import { BrowserRouter, Link } from 'react-router-dom';
@@ -12,10 +12,13 @@ import {
 import * as _ from 'lodash';
 import "./Header.css";
 import { logOut } from "../../../Utilities/Firebase";
+
 const Header = function () {
+
   const [lang] = useRecoilState(websiteLanguageState);
   const [currentUser, setCurrentUser] = useRecoilState(userState);
-  console.log(currentUser)
+  const [currentPath, setCurrentPath] = useState(window.location.pathname.split('/')[1]);
+
   let LogOutUser = async function () {
     let result = await logOut();
     if (result == 1) {
@@ -44,10 +47,10 @@ const Header = function () {
               <Nav className="me-auto">
                 {!_.isEmpty(currentUser) && 
                 <>
-                  <Nav.Link as={Link} to="/users" >{getLanguageConstant(lang, "Users")}</Nav.Link>
-                  <Nav.Link as={Link} to="/posts">{getLanguageConstant(lang, "Posts")}</Nav.Link>
-                  <Nav.Link as={Link} to="/Applications">{getLanguageConstant(lang, "Applications")}</Nav.Link>
-                  <Nav.Link as={Link} to="/ReferralCodes">{getLanguageConstant(lang, "ReferralCodes")}</Nav.Link>
+                  <Nav.Link style={{color: currentPath === 'users' ? '#832685' : ''}} as={Link} to="/users" >{getLanguageConstant(lang, "Users")}</Nav.Link>
+                  <Nav.Link style={{color: currentPath === 'posts' ? '#832685' : ''}} as={Link} to="/posts">{getLanguageConstant(lang, "Posts")}</Nav.Link>
+                  <Nav.Link style={{color: currentPath === 'applications' ? '#832685' : ''}} as={Link} to="/applications">{getLanguageConstant(lang, "Applications")}</Nav.Link>
+                  <Nav.Link style={{color: currentPath === 'referral_codes' ? '#832685' : ''}} as={Link} to="/referral_codes">{getLanguageConstant(lang, "ReferralCodes")}</Nav.Link>
                 </>
                }
                 <LanguageButton />

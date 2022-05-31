@@ -19,7 +19,6 @@ export let getLanguageConstant = (language, phrase) => {
 };
 
 export let getLanguageError = (language, error) => {
-  console.log(language, error)
   if (language === "ar") {
     return arabicErrors[error];
   } else if (language === "en") {

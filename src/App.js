@@ -7,7 +7,6 @@ import { userState } from "./RecoilResources/Atoms";
 import * as _ from 'lodash';
 function App() {
   const [currentUser] = useRecoilState(userState);
-  console.log(currentUser, "user");
 
   let renderLogInRoutes = function () {
     return (
@@ -31,7 +30,7 @@ function App() {
         <Route path="/applications">
           <Applications />
         </Route>
-        <Route path="/referralCodes">
+        <Route path="/referral_codes">
           <ReferralCodes />
         </Route>
         <Route path="/">
