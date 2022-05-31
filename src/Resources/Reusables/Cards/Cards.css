@@ -1,0 +1,34 @@
+.cards-container {
+    margin-bottom: 5vh;
+    width: 60%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.link {
+    position: relative;
+    display: block;
+    padding: .5rem .75rem;
+    margin-left: -1px;
+    line-height: 1.25;
+    color: #832685;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+}
+
+.hide {
+    display: none;
+}
+
+.page-item.active-link .link {
+    z-index: 3;
+    color: #fff;
+    background-color: #832685;
+    border-color: #832685;
+}
+
+@media screen and (max-width: 800px) {
+    .cards-container {
+        display: block;
+    }
+}

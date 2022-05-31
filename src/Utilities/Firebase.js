@@ -21,7 +21,7 @@ const firebaseConfig = {
 };
 
 firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
+export const db = firebase.firestore();
 const storage = firebase.storage();
 firebase.auth().onAuthStateChanged(function (u) {
   const setUserState = useSetRecoilState(userState);

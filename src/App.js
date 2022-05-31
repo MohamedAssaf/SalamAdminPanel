@@ -30,7 +30,7 @@ function App() {
         <Route path="/applications">
           <Applications />
         </Route>
-        <Route path="/referralCodes">
+        <Route path="/referral_codes">
           <ReferralCodes />
         </Route>
         <Route path="/">

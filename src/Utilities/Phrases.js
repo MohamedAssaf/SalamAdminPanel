@@ -16,7 +16,9 @@ export const englishPhrases = {
   Vision: "Vision",
   VisionPhrase: "Becoming a hub for safe, trusted and beneficial volunteering opportunities. Encouraging people to give back along the way.",
   Story: "Our Story",
-  StoryPhrase:"Watch our story in this brief video to understand more about Salam."
+  StoryPhrase:"Watch our story in this brief video to understand more about Salam.",
+  NoUsersFromBackEnd: "There are no users",
+  searchWithPhoneNumber: "Search with phone number"
 };
 
 export const arabicPhrases = {
@@ -37,5 +39,7 @@ export const arabicPhrases = {
   Vision: "رؤيتنا",
   VisionPhrase: "أننا نكون مركز للفرص التطوعية الأمنة, الموثوق منها و المفيدة. و ان شاء الله نكون بنشجع الناس على المساعدة عامة في طريقنا ده.",
   Story: "قصتنا",
-  StoryPhrase:"اتفرج على قصتنا في الفيديو الصغير ده علشان تعرف أكتر عن سلام. "
+  StoryPhrase:"اتفرج على قصتنا في الفيديو الصغير ده علشان تعرف أكتر عن سلام. ",
+  NoUsersFromBackEnd: "لا يوجد مستخدمين",
+  searchWithPhoneNumber: "البحث باستخدام رقم التليفون"
 };

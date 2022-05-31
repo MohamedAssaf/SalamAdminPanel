@@ -36,7 +36,10 @@ export const englishConstants = {
   Users: "Users",
   Posts: "Posts",
   Applications: "Applications",
-  ReferralCodes: "Referral Codes"
+  ReferralCodes: "Referral Codes",
+  next: "Next",
+  previous: "Previous",
+  clearResults: 'Clear results'
 };
 
 export const arabicConstants = {
@@ -77,6 +80,9 @@ export const arabicConstants = {
   Users: "المستخدمين",
   Posts: "المنشورات",
   Applications: "طلباات التقديم",
-  ReferralCodes: "أكواد الإحالة"
+  ReferralCodes: "أكواد الإحالة",
+  next: "التالي",
+  previous: "السابق",
+  clearResults: 'امسح نتائج البحث'
 };
 
