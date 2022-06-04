@@ -5,7 +5,7 @@ const { persistAtom } = recoilPersist();
 
 export const websiteDirectionState = atom({
   key: "websiteDirectionState", // unique ID (with respect to other atoms/selectors)
-  default: window.sessionStorage.getItem("websiteDirectionState") || "ltr", // default value (aka initial value)
+  default: window.sessionStorage.getItem("websiteDirectionState") || "rtl", // default value (aka initial value)
   effects_UNSTABLE: [persistAtom]
 });
 
