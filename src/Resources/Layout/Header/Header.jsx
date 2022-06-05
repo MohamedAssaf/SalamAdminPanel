@@ -1,13 +1,13 @@
 import React, { useState }  from "react";
 import { LanguageButton } from "../../Components";
 import { Navbar, Container, Nav } from "react-bootstrap";
-import { BrowserRouter, Link } from 'react-router-dom';
 import logo from "../../../Assets/SLogo1.png";
 import { getLanguageConstant } from "../../../Utilities/Helpers";
 import { useRecoilState } from "recoil";
 import {
   websiteLanguageState,
   userState,
+  websiteDirectionState
 } from "../../../RecoilResources/Atoms";
 import * as _ from 'lodash';
 import "./Header.css";
@@ -16,6 +16,7 @@ import { logOut } from "../../../Utilities/Firebase";
 const Header = function () {
 
   const [lang] = useRecoilState(websiteLanguageState);
+  const [langDirection] = useRecoilState(websiteDirectionState); 
   const [currentUser, setCurrentUser] = useRecoilState(userState);
   const [currentPath, setCurrentPath] = useState(window.location.pathname.split('/')[1]);
 
@@ -27,7 +28,7 @@ const Header = function () {
   };
 
   return (
-    <div className="header">
+    <div className="header" style={{direction: langDirection}}>
       <Navbar bg="light" expand="lg">
         <Container>
           <Navbar.Brand href="home">
@@ -43,19 +44,17 @@ const Header = function () {
           </Navbar.Brand>{" "}
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
-            <BrowserRouter>
               <Nav className="me-auto">
                 {!_.isEmpty(currentUser) && 
                 <>
-                  <Nav.Link style={{color: currentPath === 'users' ? '#832685' : ''}} as={Link} to="/users" >{getLanguageConstant(lang, "Users")}</Nav.Link>
-                  <Nav.Link style={{color: currentPath === 'posts' ? '#832685' : ''}} as={Link} to="/posts">{getLanguageConstant(lang, "Posts")}</Nav.Link>
-                  <Nav.Link style={{color: currentPath === 'applications' ? '#832685' : ''}} as={Link} to="/applications">{getLanguageConstant(lang, "Applications")}</Nav.Link>
-                  <Nav.Link style={{color: currentPath === 'referral_codes' ? '#832685' : ''}} as={Link} to="/referral_codes">{getLanguageConstant(lang, "ReferralCodes")}</Nav.Link>
+                  <Nav.Link style={{color: currentPath === 'users' ? '#832685' : ''}} href="/users" >{getLanguageConstant(lang, "Users")}</Nav.Link>
+                  <Nav.Link style={{color: currentPath === 'posts' ? '#832685' : ''}} href="/posts">{getLanguageConstant(lang, "Posts")}</Nav.Link>
+                  <Nav.Link style={{color: currentPath === 'applications' ? '#832685' : ''}} href="/applications">{getLanguageConstant(lang, "Applications")}</Nav.Link>
+                  <Nav.Link style={{color: currentPath === 'referral_codes' ? '#832685' : ''}} href="/referral_codes">{getLanguageConstant(lang, "ReferralCodes")}</Nav.Link>
                 </>
                }
                 <LanguageButton />
               </Nav>
-            </BrowserRouter>
           </Navbar.Collapse>
           {/* <i class="fa fa-user" aria-hidden="true" style={{fontSize: "1.5em"}}></i> */}
           {!_.isEmpty(currentUser) && (
