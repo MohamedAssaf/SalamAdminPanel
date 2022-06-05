@@ -1,6 +1,8 @@
 {
   "projects": {
     "default": "salam-c648a",
-    "beta": "salam-staging"
-  }
+    "beta": "salam-staging",
+    "beta_admin": "salam-beta-admin"
+  },
+  "targets": {}
 }
