@@ -63,6 +63,7 @@ const Login = function () {
       className="Body "
       style={{
         backgroundSize: "50px",
+        direction: lang == 'en' ? 'ltr' : 'rtl'
       }}
     >
       <div className="log-in-main row">
