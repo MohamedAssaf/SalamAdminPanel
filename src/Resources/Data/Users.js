@@ -1,24 +1,28 @@
 import { db } from '../../Utilities/Firebase';
 
-let firstDoc = null;
-let lastDoc = null;
+export const getUsersLength = async () => {
+
+    return (await db.collection('users').get()).size;
+
+}
+
+var lastDoc = null;
 
 export const getChunkOfUsers = async (nextOrPrev, itemsPerPage, setIndex) => {
     
-    //NOTE: endAt takes the doc itself, not its index.
-    const usersRef = !lastDoc || !firstDoc ? db.collection('users').orderBy("name").limit(itemsPerPage) 
-    : nextOrPrev == 'next' ? 
-    db.collection('users').orderBy("name").startAfter(lastDoc).limit(itemsPerPage) : 
-    db.collection('users').orderBy("index").where('index', ">=", setIndex * itemsPerPage).limit(itemsPerPage);
+    console.log('Calling the backend...');
+    //NOTE: startAt, startAfter, endAt & endBefore take the doc itself, not its index.
+    const usersRef = !lastDoc ? db.collection('users').orderBy("name").limit(itemsPerPage) 
+    :
+    db.collection('users').orderBy("name").startAfter(lastDoc).limit(itemsPerPage) 
 
     const queryData = await usersRef.get();
     const chunkOfUsers = [];
-    firstDoc = queryData.docs[0]; 
-    lastDoc = queryData.docs[queryData.docs.length - 1];
+    lastDoc = queryData.docs.length > 0 ? queryData.docs[queryData.docs.length - 1] : lastDoc;
     queryData.forEach((doc) => {
-        chunkOfUsers.push(doc.data());
-        console.log(doc.data());
+        chunkOfUsers.push(doc.data()); 
     });
+
     return chunkOfUsers;
 }
 
