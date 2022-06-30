@@ -1,12 +1,18 @@
+//Import from react 
 import { useState, useEffect } from 'react';
+
+//Import style
 import "./Users.css";
+
+//Import recoil stuff
 import { useRecoilState } from "recoil";
 import { websiteLanguageState } from "../../../RecoilResources/Atoms";
+
+//Import other components
 import Cards from "../../Reusables/Cards/Cards";
 
 //Import fetching data from firestore functions  
-import { getChunkOfUsers } from '../../Data/Users';
-import { getUserWithNumber } from '../../Data/Users'; 
+import { getChunkOfUsers, getUserWithNumber, getUsersLength } from '../../Data/Users';
 
 //Import from font-awesome
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
@@ -22,6 +28,7 @@ const Users = function() {
     
     const [lang] = useRecoilState(websiteLanguageState);
     const [users, setUsers] = useState([]);
+    const [usersHistory, setUsersHistory] = useState([]);
     const [nextOrPrev, setNextOrPrev] = useState('');
     const [isPrevBtnDisabled, setIsPrevBtnDisabled] = useState(true);
     const [isNextBtnDisabled, setIsNextBtnDisabled] = useState(false);
@@ -31,15 +38,42 @@ const Users = function() {
     const [invalidPhoneNumberIsShown, setInvalidPhoneNumberIsShown] = useState(false);
     const [phoneNumberErrorMessage, setPhoneNumberErrorMessage] = useState('');
     const [isClearResultsShown, setIsClearResultsShown] = useState(false);
+    const [usersLength, setUsersLength] = useState();
 
     useEffect(() => {
-        console.log(`usersSetIndex is ${usersSetIndex}`);
-        console.log(`Get ${nextOrPrev} users set`);
-        setIsPrevBtnDisabled(usersSetIndex == 0 ? true : false);
+        getUsersLength().then((size) => {
+            setUsersLength(size);
+        })
         getChunkOfUsers(nextOrPrev, itemsPerPage, usersSetIndex).then((chunkOfUsers) => {
             setUsers(chunkOfUsers);
-            setIsNextBtnDisabled(chunkOfUsers[chunkOfUsers.length - 1].lastItem ? true : false);
-        });
+            setUsersHistory((prevUsersHistory) => [
+                ...prevUsersHistory,
+                chunkOfUsers
+            ])  
+        })
+    }, [])
+
+    useEffect(() => {
+        usersSetIndex + 1  == Math.ceil(usersLength / itemsPerPage) ? setIsNextBtnDisabled(true) : setIsNextBtnDisabled(false);
+    }, [usersLength, usersSetIndex])
+
+    useEffect(() => {
+        setIsPrevBtnDisabled(usersSetIndex == 0 ? true : false);
+        if(nextOrPrev == 'next') {
+            usersHistory[usersSetIndex] ? setUsers(usersHistory[usersSetIndex]) 
+            :
+            getChunkOfUsers(nextOrPrev, itemsPerPage, usersSetIndex).then((chunkOfUsers) => {
+                setUsers(chunkOfUsers);
+                setUsersHistory((prevUsersHistory) => [
+                    ...prevUsersHistory,
+                    chunkOfUsers
+                ])  
+            })
+        }
+        else if(nextOrPrev == 'prev'){ 
+            setUsers(usersHistory[usersSetIndex]);
+        }
+
     }, [usersSetIndex]);
 
     const handleInputChange = (event) => {
@@ -58,6 +92,7 @@ const Users = function() {
             setIsClearResultsShown(true);
         });    
         setIsNextBtnDisabled(true);
+        setIsPrevBtnDisabled(true);
     }
 
     const handlePageClick = (event) => {
@@ -68,7 +103,6 @@ const Users = function() {
     const handleClearResults = () => {
         window.location.reload();
     }
-
 
     return (
         <div className="main-container">
@@ -88,18 +122,18 @@ const Users = function() {
                 <p style={{color: "red"}}>{phoneNumberErrorMessage}</p>
             }
             {
-                users.length == 1 && !users[0] &&
+                !users[0] &&
                 <h3 style={{marginTop: "10%"}}>{getLanguagePhrase(lang, "NoUsersFromBackEnd")}</h3>
             }
             { users[0] &&
             <>
                 <Cards items={users}/>
-                <div style={{direction: 'ltr'}}>
-                  <button className='button' style={{margin: '2rem'}} disabled={isPrevBtnDisabled ? 'disabled' : ''} value='prev' onClick={(event) => handlePageClick(event)}>&larr; {getLanguageConstant(lang, 'previous')}</button>
-                  <button className='button' style={{margin: '2rem'}} disabled={isNextBtnDisabled ? 'disabled' : ''} value='next' onClick={(event) => handlePageClick(event)}>{getLanguageConstant(lang, 'next')} &rarr;</button>
-                </div>
             </>
             }
+            <div style={{direction: 'ltr'}}>
+                <button className='button' style={{margin: '2rem'}} disabled={isPrevBtnDisabled ? 'disabled' : ''} value='prev' onClick={(event) => handlePageClick(event)}>&larr; {getLanguageConstant(lang, 'previous')}</button>
+                <button className='button' style={{margin: '2rem'}} disabled={isNextBtnDisabled ? 'disabled' : ''} value='next' onClick={(event) => handlePageClick(event)}>{getLanguageConstant(lang, 'next')} &rarr;</button>
+            </div>      
         </div>
     )
 }

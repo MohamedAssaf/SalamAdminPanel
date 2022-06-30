@@ -34,7 +34,7 @@ export let validateEmail = (email) => {
 
 export let validatePhoneNumber = (number) => {
   if (number && number.length > 0) {
-    if (number.length != 10) {
+    if (number.length == 11) {
       let re = new RegExp("^[0-9]+$");
       if (re.test(String(number))) {
         return {
