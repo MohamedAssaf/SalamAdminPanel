@@ -55,7 +55,7 @@ const Login = function () {
     };
 
     let user = await logIn(lang, logInObj);
-    setCurrentUser(user.uid);
+    setCurrentUser(user?.uid);
     setShow(false);
   };
   return (
