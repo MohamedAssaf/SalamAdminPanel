@@ -1,14 +1,17 @@
 import DisplayCard from '../DisplayCard/DisplayCard';
 import './Cards.css';
 
-const Cards = function({ items }) {
+const Cards = function({ items, ...props }) {
   
   return (
     <div className="cards-container">
       {
         items.map((item) => {
           return (
-            <DisplayCard name={item.name} phone={item.phone} image={item.photo}/>
+            <DisplayCard
+              item={item}
+              detailsLink={`${props.detailsBaseLink}/${item.codeId}`}  
+            />
           )
         })
       }
