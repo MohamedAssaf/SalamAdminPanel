@@ -31,7 +31,7 @@ const Header = function () {
     <div className="header" style={{direction: langDirection}}>
       <Navbar bg="light" expand="lg">
         <Container>
-          <Navbar.Brand href="home">
+          <Navbar.Brand href="/">
             <img
               alt=""
               src={logo}
