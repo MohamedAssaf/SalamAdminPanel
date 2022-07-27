@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { userState } from "./RecoilResources/Atoms";
 import * as _ from 'lodash';
+import UserDetails from "./Resources/Pages/UserDetails/UserDetails";
 function App() {
   const [currentUser] = useRecoilState(userState);
 
@@ -21,7 +22,7 @@ function App() {
   let renderLoggedInRoutes = function () {
     return (
       <Switch>
-        <Route path="/users">
+        <Route exact path="/users">
           <Users />
         </Route>
         <Route path="/posts">
@@ -32,6 +33,9 @@ function App() {
         </Route>
         <Route path="/referral_codes">
           <ReferralCodes />
+        </Route>
+        <Route path="/users/:userCodeId">
+          <UserDetails/>
         </Route>
         <Route path="/">
           <Main />

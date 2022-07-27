@@ -20,3 +20,9 @@ export const userState = atom({
   default: null,
   effects_UNSTABLE: [persistAtom]
 });
+
+export const userDetails = atom({
+  key: 'userDetails',
+  default: null,
+  effects_UNSTABLE: [persistAtom]
+}) 

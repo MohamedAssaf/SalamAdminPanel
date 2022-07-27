@@ -127,7 +127,10 @@ const Users = function() {
             }
             { users[0] &&
             <>
-                <Cards items={users}/>
+                <Cards 
+                    items={users}
+                    detailsBaseLink={'users'}    
+                />
             </>
             }
             <div style={{direction: 'ltr'}}>
